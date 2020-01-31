@@ -51,7 +51,7 @@ function runcommand()
 
 
     
-    copyDir('./niit/.git','./.git',function(err){
+    copyDir('./niit/.git','./hello/.git',function(err){
 
         if(err)
         {
@@ -79,44 +79,25 @@ function runcommand()
                 const answers = await prompts(questions);
                 var branch_name=answers.BranchName;
                 var comment=answers.comment;
-                var git_command='git commit -m '+"\"" + comment+"\" "+'./hello/niit/';
-               
+                var git_command='git commit -m '+"\"" + comment+"\" hello";
+              //  var git_command='git commit -m '+"\"" + comment+"\" ";
                 console.log(git_command);
+                Shelljs.exec('cd hello');
 
                 console.log(Shelljs.exec('git checkout --orphan '+branch_name));
             	//Shelljs.exec('git config --global user.name "alok07"');
-                Shelljs.exec('git add .');
+                Shelljs.exec('git add ./hello/');
                 Shelljs.exec(git_command);
                 Shelljs.exec('git push origin '+branch_name);
             
             })();
         }
-
-
-
-
-
-
-
-
-// console.log(Shelljs.exec('git checkout --orphan NIIT9191'));
-// 	Shelljs.exec('git config --global user.name "alok07"');
-// Shelljs.exec('git add .');
-//    Shelljs.exec('git commit -m "msg" ./my.json');
-//    Shelljs.exec('git push origin NIIT9191');
-        
  
      
     });
 
-   //----------------------------------------------
 
-  /*console.log(Shelljs.exec('git checkout --orphan NIIT99'));
-	Shelljs.exec('git config --global user.name "alok07"');
-Shelljs.exec('git add .');
-   Shelljs.exec('git commit -m "msg"');
-   Shelljs.exec('git push origin NIIT99');
-   */
+
    }
   catch(error)
   {
@@ -133,6 +114,9 @@ Shelljs.exec('git add .');
 function updatefiles(path)
 {
  
+    try{
+
+    
     
     
     fs.readFile(path, function (err, data) {
@@ -180,6 +164,11 @@ function updatefiles(path)
         }
 
       });
+    }
+    catch(err)
+    {
+        console.log("Error while updating the grunt and main js files "+ err);
+    }
 
     
 
@@ -187,10 +176,12 @@ function updatefiles(path)
  
 }
 
-var b
+
 async function printdata(row)
  {
        
+
+      try{
 
       
     
@@ -212,6 +203,11 @@ async function printdata(row)
             
 
         })
+    }
+    catch(err)
+    {
+        console.log("Error while creating json file "+ err);
+    }
     
  }
 
@@ -222,6 +218,9 @@ async function printdata(row)
 // Bellow mention accessSpreadsheet method are responsible for fetching the data from google spread sheet and create new json file with the help of printdata method.
 
  async function accessSpreadsheet() {
+     try{
+
+    
      var counter=0,counter1;
      const doc=new GoogleSpreadsheet('1wazpIyk2pEWNOZylAbVJ1Fa3Quf2vINO1EnNxMgobn8')
      await promisify(doc.useServiceAccountAuth)(creds);
@@ -263,15 +262,16 @@ async function printdata(row)
            });
         printdata(b);
 
-       }
-        
-  
-        
+       }       
    
     
         
      });
-    
+    }
+    catch(err)
+    {
+        console.log("Error while Fetching the data from google spreadsheet "+ err);
+    }
 
       
  }
