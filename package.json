@@ -1,0 +1,21 @@
+{
+  "name": "google_sheet_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+     "copy-dir": "^1.2.0",
+    "dateformat": "^3.0.3",
+    "google-spreadsheet": "^2.0.8",
+    "is-my-json-valid": "^2.20.0",
+    "prompts": "^2.3.0",
+    "shelljs": "^0.8.3",
+    
+  }
+}
