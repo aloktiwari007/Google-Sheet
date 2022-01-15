@@ -12,7 +12,7 @@
     "google-spreadsheet": "^2.0.8",
     "is-my-json-valid": "^2.20.0",
     "prompts": "^2.3.0",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.5"
   },
   "author": "ALok Kumar Tiwari",
   "license": "ISC"
